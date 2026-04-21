@@ -1,0 +1,69 @@
+<div class="register-page">
+  <div class="register-container">
+    <div class="register-box">
+      <div class="top-bar">
+        <div class="logo">
+          <span class="white">Speed</span><span class="red">BuyCars</span>
+        </div>
+      </div>
+
+      <div class="form-area">
+        <h1>CREATE YOUR ACCOUNT</h1>
+
+        <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+        <div class="success-message" *ngIf="successMessage">{{ successMessage }}</div>
+
+        <form (ngSubmit)="register()">
+          <div class="input-group">
+            <input
+              type="text"
+              name="fullName"
+              [(ngModel)]="fullName"
+              placeholder="Full Name"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <input
+              type="email"
+              name="email"
+              [(ngModel)]="email"
+              placeholder="Email Address"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <input
+              type="password"
+              name="password"
+              [(ngModel)]="password"
+              placeholder="Password"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <input
+              type="password"
+              name="confirmPassword"
+              [(ngModel)]="confirmPassword"
+              placeholder="Confirm Password"
+              required
+            />
+          </div>
+
+          <button type="submit" class="signup-btn" [disabled]="isLoading">
+            {{ isLoading ? 'REGISTERING...' : 'REGISTER' }}
+          </button>
+        </form>
+
+        <div class="bottom-text">
+          Already have an account?
+          <a routerLink="/login">Login Here</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

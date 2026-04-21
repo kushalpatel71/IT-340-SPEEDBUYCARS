@@ -1,0 +1,35 @@
+<section class="sell-success-page">
+  <div class="success-container">
+    <img src="/cars/sellcar.jpeg" alt="Sell Car to Dealer" class="top-image">
+
+    <div class="checkmark">✓</div>
+
+    <h1>Vehicle Submitted Successfully</h1>
+
+    <p class="message">
+      Your vehicle details have been received. Our team will contact you soon with an offer.
+    </p>
+
+    <div class="summary-box">
+      <div class="summary-item"><span>Full Name:</span> {{ data.fullName || '' }}</div>
+      <div class="summary-item"><span>Email:</span> {{ data.email || '' }}</div>
+      <div class="summary-item"><span>Phone:</span> {{ data.phone || '' }}</div>
+      <div class="summary-item"><span>Make:</span> {{ data.vehicleMake || '' }}</div>
+      <div class="summary-item"><span>Model:</span> {{ data.vehicleModel || '' }}</div>
+      <div class="summary-item"><span>Year:</span> {{ data.vehicleYear || '' }}</div>
+      <div class="summary-item"><span>Mileage:</span> {{ data.mileage || '' }}</div>
+      <div class="summary-item"><span>Condition:</span> {{ data.condition || '' }}</div>
+      <div class="summary-item"><span>Asking Price:</span> {{ data.askingPrice || '' }}</div>
+      <div class="summary-item"><span>Notes:</span> {{ data.notes || 'No additional notes' }}</div>
+    </div>
+
+    <div class="note">
+      ✔ A confirmation email has been sent.
+    </div>
+
+    <div class="button-group">
+      <a routerLink="/sell-your-car" class="btn btn-primary">Submit Another</a>
+      <a routerLink="/" class="btn btn-secondary">Home</a>
+    </div>
+  </div>
+</section>

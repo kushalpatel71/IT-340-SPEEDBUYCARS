@@ -1,0 +1,92 @@
+<section class="home-page">
+  <section class="hero">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1>BUY &amp; SELL CARS WITH SPEED</h1>
+        <p>Find your perfect ride today with trusted listings and easy quote requests.</p>
+        <a routerLink="/inventory" class="hero-btn">BROWSE OUR CARS</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="featured-section">
+    <h2 class="section-title">FEATURED LISTINGS</h2>
+
+    <div class="featured-grid">
+      <div class="car-card">
+        <img src="assets/cars/2020-ford-mustang-gt.jpeg" alt="2020 Ford Mustang">
+        <div class="car-info">
+          <h3>2020 Ford Mustang</h3>
+          <p>Sporty performance, premium interior, low mileage.</p>
+          <div class="price">$25,500</div>
+          <a routerLink="/car-details" [queryParams]="{ car: 'mustang' }" class="card-btn">View Details</a>
+        </div>
+      </div>
+
+      <div class="car-card">
+        <img src="assets/cars/bmw.jpeg" alt="2019 BMW 330i">
+        <div class="car-info">
+          <h3>2019 BMW 330i</h3>
+          <p>Luxury sedan with smooth handling and modern tech.</p>
+          <div class="price">$21,900</div>
+          <a routerLink="/car-details" [queryParams]="{ car: 'bmw330i' }" class="card-btn">View Details</a>
+        </div>
+      </div>
+
+      <div class="car-card">
+        <img src="assets/cars/toyo.jpeg" alt="2021 Toyota RAV4">
+        <div class="car-info">
+          <h3>2021 Toyota RAV4</h3>
+          <p>Reliable SUV with spacious interior and safety features.</p>
+          <div class="price">$22,700</div>
+          <a routerLink="/car-details" [queryParams]="{ car: 'rav4' }" class="card-btn">View Details</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="why-section">
+    <div class="why-card">
+      <div class="why-image">
+        <img src="assets/cars/men.jpeg" alt="Luxury car interior style">
+      </div>
+
+      <div class="why-content">
+        <h2>Easy. Fast. Trusted.</h2>
+        <p>
+          SpeedBuyCars is designed to make the car buying experience simple and convenient.
+          Browse quality vehicle listings, compare prices, and connect with dealerships.
+        </p>
+        <p>
+          Our platform gives users a clean marketplace experience with secure login, quote requests,
+          and confirmation emails after submission.
+        </p>
+        <a routerLink="/get-quote" class="why-btn">Get Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <h3>Contact Us</h3>
+        <p>555-123-4567</p>
+        <p>info@speedbuycars.com</p>
+      </div>
+
+      <div>
+        <h3>Quick Links</h3>
+        <p><a routerLink="/inventory">Inventory</a></p>
+        <p><a routerLink="/login">Login</a></p>
+        <p><a routerLink="/register">Register</a></p>
+      </div>
+
+      <div>
+        <h3>Follow Us</h3>
+        <p>Facebook</p>
+        <p>Instagram</p>
+        <p>Twitter</p>
+      </div>
+    </div>
+  </footer>
+</section>

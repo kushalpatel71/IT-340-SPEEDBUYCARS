@@ -1,0 +1,30 @@
+<div class="confirm-page">
+  <div class="confirm-box">
+    <div class="top-bar">
+      <div class="logo">
+        <span class="white">Speed</span><span class="red">BuyCars</span>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="icon">📧</div>
+      <h1>QUOTE REQUEST SENT!</h1>
+      <p>Your quote request has been submitted successfully.</p>
+      <p>A confirmation email has been sent to your email address.</p>
+
+      <div class="details-box" *ngIf="quoteData?.fullName">
+        <p><strong>Full Name:</strong> {{ quoteData.fullName }}</p>
+        <p><strong>Email:</strong> {{ quoteData.email }}</p>
+        <p><strong>Phone:</strong> {{ quoteData.phone }}</p>
+        <p><strong>Selected Vehicle:</strong> {{ quoteData.vehicle }}</p>
+        <p><strong>Additional Notes:</strong> {{ quoteData.message || 'No additional notes' }}</p>
+      </div>
+
+      <p>Thank you for choosing SpeedBuyCars.</p>
+
+      <a routerLink="/" class="return-btn">RETURN HOME</a>
+    </div>
+  </div>
+
+  <div class="page-label">Quote Confirmation Page</div>
+</div>

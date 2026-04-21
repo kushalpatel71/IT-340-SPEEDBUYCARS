@@ -1,0 +1,33 @@
+import { Routes } from '@angular/router';
+import { PaymentOptionsComponent } from './pages/payment-options/payment-options';
+import { PaymentConfirmationComponent } from './pages/payment-confirmation/payment-confirmation';
+import { HomeComponent } from './pages/home/home';
+import { InventoryComponent } from './pages/inventory/inventory';
+import { CarDetailsComponent } from './pages/car-details/car-details';
+import { AboutComponent } from './pages/about/about';
+import { ContactComponent } from './pages/contact/contact';
+import { FinancingComponent } from './pages/financing/financing';
+import { GetQuoteComponent } from './pages/get-quote/get-quote';
+import { QuoteConfirmationComponent } from './pages/quote-confirmation/quote-confirmation';
+import { LoginComponent } from './pages/login/login';
+import { RegisterComponent } from './pages/register/register';
+import { SellYourCarComponent } from './pages/sell-your-car/sell-your-car';
+import { SellSuccessComponent } from './pages/sell-success/sell-success';
+
+export const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'inventory', component: InventoryComponent },
+  { path: 'car-details', component: CarDetailsComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'financing', component: FinancingComponent },
+  { path: 'get-quote', component: GetQuoteComponent },
+  { path: 'quote-confirmation', component: QuoteConfirmationComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'sell-your-car', component: SellYourCarComponent },
+  { path: 'sell-success', component: SellSuccessComponent },
+  { path: 'payment-options', component: PaymentOptionsComponent },
+  { path: 'payment-confirmation', component: PaymentConfirmationComponent },
+  { path: '**', redirectTo: '' }
+];
