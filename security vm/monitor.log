@@ -1,0 +1,75 @@
+===== SECURITY VM STATUS =====
+Wed Apr 22 01:21:24 PM EDT 2026
+
+HOSTNAME:
+speedbuy-security-VMware-Virtual-Platform
+
+IP ADDRESS:
+192.168.165.137 
+
+UPTIME:
+ 13:21:24 up 20 min,  1 user,  load average: 0.13, 0.15, 0.26
+
+MEMORY:
+               total        used        free      shared  buff/cache   available
+Mem:           3.8Gi       1.4Gi       252Mi        33Mi       2.4Gi       2.4Gi
+Swap:          3.7Gi          0B       3.7Gi
+
+DISK:
+Filesystem      Size  Used Avail Use% Mounted on
+tmpfs           387M  2.3M  385M   1% /run
+/dev/sda2        20G   15G  4.5G  77% /
+tmpfs           1.9G     0  1.9G   0% /dev/shm
+tmpfs           5.0M  8.0K  5.0M   1% /run/lock
+tmpfs           387M  124K  387M   1% /run/user/1000
+/dev/sr0         94M   94M     0 100% /media/speedbuy-security/CDROM1
+/dev/sr1        6.0G  6.0G     0 100% /media/speedbuy-security/Ubuntu 24.04.3 LTS amd64
+
+TOP PROCESSES:
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+grafana     1523  2.9  7.4 1635428 296644 ?      Ssl  13:00   0:36 /usr/share/grafana/bin/grafana server --config=/etc/grafana/grafana.ini --pidfile=/run/grafana/grafana-server.pid --packaging=deb cfg:default.paths.logs=/var/log/grafana cfg:default.paths.data=/var/lib/grafana cfg:default.paths.plugins=/var/lib/grafana/plugins cfg:default.paths.provisioning=/etc/grafana/provisioning
+speedbu+    2713  2.7  7.1 3868684 284240 ?      Ssl  13:02   0:30 /usr/bin/gnome-shell
+alloy       1517  1.1  5.5 2308892 218436 ?      Ssl  13:00   0:13 /usr/bin/alloy run --storage.path=/var/lib/alloy/data /etc/alloy/config.alloy
+speedbu+    3971  0.7  1.4 623784 56200 ?        Ssl  13:19   0:00 /usr/libexec/gnome-terminal-server
+root        1494  0.6  1.4 1447468 57064 ?       Ssl  13:00   0:08 /usr/bin/python3 /usr/bin/fail2ban-server -xf start
+speedbu+    3071  0.4  0.7 421536 30228 ?        Sl   13:02   0:04 /usr/libexec/ibus-extension-gtk3
+speedbu+    3889  0.3  1.5 3146268 62804 ?       Sl   13:19   0:00 gjs /usr/share/gnome-shell/extensions/ding@rastersoft.com/app/ding.js -E -P /usr/share/gnome-shell/extensions/ding@rastersoft.com/app
+speedbu+    2913  0.3  1.1 435636 47340 ?        Sl   13:02   0:03 /usr/bin/vmtoolsd -n vmusr --blockFd 3 --uinputFd 4
+root           1  0.2  0.3  23372 14888 ?        Ss   13:00   0:03 /sbin/init splash
+
+ACTIVE SSH CONNECTIONS:
+speedbuy-security seat0        2026-04-22 13:02 (login screen)
+speedbuy-security tty2         2026-04-22 13:02 (tty2)
+
+RECENT LOGINS:
+speedbuy tty2         tty2             Wed Apr 22 13:02   still logged in
+speedbuy seat0        login screen     Wed Apr 22 13:02   still logged in
+reboot   system boot  6.17.0-22-generi Wed Apr 22 13:00   still running
+speedbuy pts/1        192.168.165.139  Wed Apr 22 12:55 - 13:00  (00:05)
+speedbuy tty2         tty2             Wed Apr 22 11:43 - down   (01:17)
+speedbuy seat0        login screen     Wed Apr 22 11:43 - down   (01:17)
+reboot   system boot  6.17.0-20-generi Wed Apr 22 11:42 - 13:00  (01:17)
+speedbuy tty2         tty2             Wed Apr 22 01:35 - down   (02:26)
+speedbuy seat0        login screen     Wed Apr 22 01:35 - down   (02:26)
+reboot   system boot  6.17.0-20-generi Wed Apr 22 01:34 - 04:01  (02:27)
+
+wtmp begins Sat Apr  4 20:31:08 2026
+
+FAILED LOGIN ATTEMPTS:
+2026-04-21T17:35:26.593367-04:00 speedbuy-security-VMware-Virtual-Platform sshd[5673]: Failed password for invalid user speedbuy-frontend from 192.168.79.146 port 46228 ssh2
+2026-04-21T17:35:40.713738-04:00 speedbuy-security-VMware-Virtual-Platform sshd[5673]: Failed password for invalid user speedbuy-frontend from 192.168.79.146 port 46228 ssh2
+2026-04-21T17:35:59.183886-04:00 speedbuy-security-VMware-Virtual-Platform sshd[5673]: Failed password for invalid user speedbuy-frontend from 192.168.79.146 port 46228 ssh2
+2026-04-22T12:23:02.064656-04:00 speedbuy-security-VMware-Virtual-Platform sudo: speedbuy-security : TTY=pts/0 ; PWD=/home/speedbuy-security ; USER=root ; COMMAND=/usr/bin/grep 'Failed password' /var/log/auth.log
+2026-04-22T12:47:56-04:00 speedbuydatabase-VMware-Virtual-Platform sshd[18706]: Failed password for invalid user speedbuy-database from 192.168.165.138 port 50658 ssh2
+2026-04-22T12:48:07-04:00 speedbuydatabase-VMware-Virtual-Platform sshd[18706]: Failed password for invalid user speedbuy-database from 192.168.165.138 port 50658 ssh2
+2026-04-22T12:49:37-04:00 speedbuydatabase-VMware-Virtual-Platform sshd[18706]: Failed password for invalid user speedbuy-database from 192.168.165.138 port 50658 ssh2
+2026-04-22T12:57:49-04:00 speedbuy-frontend-VMware-Virtual-Platform sudo: speedbuy-frontend : TTY=pts/0 ; PWD=/home/speedbuy-frontend ; USER=root ; COMMAND=/usr/bin/grep 'Failed password' /var/log/auth.log
+2026-04-22T12:58:40.855181-04:00 speedbuy-security-VMware-Virtual-Platform sudo: speedbuy-security : TTY=pts/1 ; PWD=/home/speedbuy-security ; USER=root ; COMMAND=/usr/bin/grep 'Failed password' /var/log/auth.log
+2026-04-22T13:10:44-04:00 speedbuydatabase-VMware-Virtual-Platform sudo: speedbuydatabase : TTY=pts/0 ; PWD=/home/speedbuydatabase ; USER=root ; COMMAND=/usr/bin/grep 'Failed password' /var/log/auth.log
+2026-04-22T13:13:21-04:00 speedbuy-backend-VMware-Virtual-Platform sudo: speedbuy-backend : TTY=pts/0 ; PWD=/home/speedbuy-backend ; USER=root ; COMMAND=/usr/bin/grep 'Failed password' /var/log/auth.log
+2026-04-22T13:14:52-04:00 speedbuy-backend-VMware-Virtual-Platform sudo: speedbuy-backend : TTY=pts/0 ; PWD=/home/speedbuy-backend ; USER=root ; COMMAND=/usr/bin/grep 'Failed password' /var/log/auth.log
+2026-04-22T13:15:42-04:00 speedbuydatabase-VMware-Virtual-Platform sudo: speedbuydatabase : TTY=pts/0 ; PWD=/home/speedbuydatabase ; USER=root ; COMMAND=/usr/bin/grep 'Failed password' /var/log/auth.log
+2026-04-22T13:17:19-04:00 speedbuy-frontend-VMware-Virtual-Platform sudo: speedbuy-frontend : TTY=pts/0 ; PWD=/home/speedbuy-frontend ; USER=root ; COMMAND=/usr/bin/grep 'Failed password' /var/log/auth.log
+2026-04-22T13:18:27-04:00 speedbuy-frontend-VMware-Virtual-Platform sudo: speedbuy-frontend : TTY=pts/0 ; PWD=/home/speedbuy-frontend ; USER=root ; COMMAND=/usr/bin/grep 'Failed password' /var/log/auth.log
+2026-04-22T13:20:22.080337-04:00 speedbuy-security-VMware-Virtual-Platform sudo: speedbuy-security : TTY=pts/0 ; PWD=/home/speedbuy-security ; USER=root ; COMMAND=/usr/bin/grep 'Failed password' /var/log/auth.log
+2026-04-22T13:21:24.260547-04:00 speedbuy-security-VMware-Virtual-Platform sudo: speedbuy-security : TTY=pts/0 ; PWD=/home/speedbuy-security ; USER=root ; COMMAND=/usr/bin/grep 'Failed password' /var/log/auth.log
