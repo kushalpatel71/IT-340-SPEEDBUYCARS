@@ -1,0 +1,255 @@
+<div class="payment-page">
+  <div class="container">
+    <h1 class="page-title">Payment Options</h1>
+    <p class="subtitle">
+      Choose your payment method and enter your contact and payment details below.
+    </p>
+
+    <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+    <div class="success-message" *ngIf="successMessage">{{ successMessage }}</div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Complete Your Payment Details</h2>
+
+        <form #paymentForm="ngForm" (ngSubmit)="submitPayment()" novalidate>
+          <div class="form-grid">
+            <div class="input-group full-width">
+              <label for="carSelect">Selected Vehicle</label>
+              <select
+                id="carSelect"
+                name="car"
+                [(ngModel)]="formData.car"
+                required
+                #car="ngModel">
+                <option value="">Choose a vehicle</option>
+                <option value="2020 Ford Mustang">2020 Ford Mustang</option>
+                <option value="2019 BMW 330i">2019 BMW 330i</option>
+                <option value="2021 Toyota RAV4">2021 Toyota RAV4</option>
+                <option value="2018 Honda Civic">2018 Honda Civic</option>
+                <option value="2022 Tesla Model 3">2022 Tesla Model 3</option>
+                <option value="2017 Audi A4">2017 Audi A4</option>
+                <option value="2020 Mercedes C300">2020 Mercedes C300</option>
+                <option value="2016 Nissan Altima">2016 Nissan Altima</option>
+                <option value="2021 Jeep Wrangler">2021 Jeep Wrangler</option>
+                <option value="2019 Hyundai Elantra">2019 Hyundai Elantra</option>
+                <option value="2022 Kia Sportage">2022 Kia Sportage</option>
+                <option value="2018 Subaru Outback">2018 Subaru Outback</option>
+                <option value="2023 Chevrolet Camaro">2023 Chevrolet Camaro</option>
+                <option value="2020 Lexus RX 350">2020 Lexus RX 350</option>
+                <option value="2021 Honda Accord">2021 Honda Accord</option>
+              </select>
+            </div>
+
+            <div class="input-group full-width">
+              <label>Choose Payment Method</label>
+              <div class="method-grid">
+                <label class="method-box">
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="Credit Card"
+                    [(ngModel)]="formData.paymentMethod"
+                    required>
+                  Credit Card
+                </label>
+
+                <label class="method-box">
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="Debit Card"
+                    [(ngModel)]="formData.paymentMethod"
+                    required>
+                  Debit Card
+                </label>
+
+                <label class="method-box">
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="MasterCard"
+                    [(ngModel)]="formData.paymentMethod"
+                    required>
+                  MasterCard
+                </label>
+
+                <label class="method-box">
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="Bank Transfer"
+                    [(ngModel)]="formData.paymentMethod"
+                    required>
+                  Bank Transfer
+                </label>
+
+                <label class="method-box">
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="Cash"
+                    [(ngModel)]="formData.paymentMethod"
+                    required>
+                  Cash
+                </label>
+
+                <label class="method-box">
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="In-Dealership Purchase"
+                    [(ngModel)]="formData.paymentMethod"
+                    required>
+                  In-Dealership Purchase
+                </label>
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="fullname">Full Name</label>
+              <input
+                type="text"
+                id="fullname"
+                name="fullname"
+                [(ngModel)]="formData.fullname"
+                placeholder="Enter your full name"
+                required>
+            </div>
+
+            <div class="input-group">
+              <label for="phone">Phone Number</label>
+              <input
+                type="text"
+                id="phone"
+                name="phone"
+                [(ngModel)]="formData.phone"
+                placeholder="Enter your phone number"
+                required>
+            </div>
+
+            <div class="input-group">
+              <label for="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                [(ngModel)]="formData.email"
+                placeholder="Enter your email address"
+                required>
+            </div>
+
+            <div class="input-group">
+              <label for="address">Address</label>
+              <input
+                type="text"
+                id="address"
+                name="address"
+                [(ngModel)]="formData.address"
+                placeholder="Enter your address"
+                required>
+            </div>
+
+            <ng-container *ngIf="needsCard">
+              <div class="input-group">
+                <label for="cardName">Name on Card</label>
+                <input
+                  type="text"
+                  id="cardName"
+                  name="cardName"
+                  [(ngModel)]="formData.cardName"
+                  placeholder="Enter name on your card"
+                  [required]="needsCard">
+              </div>
+
+              <div class="input-group">
+                <label for="cardNumber">Card Number</label>
+                <input
+                  type="text"
+                  id="cardNumber"
+                  name="cardNumber"
+                  [(ngModel)]="formData.cardNumber"
+                  placeholder="1234 5678 9012 3456"
+                  [required]="needsCard">
+              </div>
+
+              <div class="input-group">
+                <label for="expiry">Expiration Date</label>
+                <input
+                  type="text"
+                  id="expiry"
+                  name="expiry"
+                  [(ngModel)]="formData.expiry"
+                  placeholder="MM/YY"
+                  [required]="needsCard">
+              </div>
+
+              <div class="input-group">
+                <label for="cvv">CVV</label>
+                <input
+                  type="text"
+                  id="cvv"
+                  name="cvv"
+                  [(ngModel)]="formData.cvv"
+                  placeholder="123"
+                  [required]="needsCard">
+              </div>
+            </ng-container>
+
+            <div class="input-group full-width">
+              <label for="notes">Additional Notes</label>
+              <textarea
+                id="notes"
+                name="notes"
+                [(ngModel)]="formData.notes"
+                placeholder="Add any message for the dealership"></textarea>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button type="submit" class="submit-btn" [disabled]="isLoading">
+              {{ isLoading ? 'SUBMITTING...' : 'Submit Payment Request' }}
+            </button>
+
+            <button type="button" class="back-btn" routerLink="/">
+              Back to Home
+            </button>
+          </div>
+        </form>
+
+        <p class="helper-text">
+          For a class demo website, this page collects sample information only.
+          Do not use real payment information when presenting your project.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Payment Summary</h2>
+
+        <div class="summary-box">
+          <h3>Selected Option</h3>
+          <div class="summary-line">
+            <span>Vehicle:</span>
+            <strong>{{ formData.car || 'Not selected' }}</strong>
+          </div>
+          <div class="summary-line">
+            <span>Payment Method:</span>
+            <strong>{{ formData.paymentMethod || 'Not selected' }}</strong>
+          </div>
+          <div class="summary-line">
+            <span>Processing:</span>
+            <strong>{{ processingText }}</strong>
+          </div>
+        </div>
+
+        <ul class="note-list">
+          <li>Credit, debit, and MasterCard requests can be submitted online.</li>
+          <li>Bank transfer requests will be reviewed by the dealership before confirmation.</li>
+          <li>Cash and in-dealership purchase options can be finalized at pickup or appointment time.</li>
+          <li>Bring a valid ID and confirmation email when visiting the dealership.</li>
+          <li>Vehicle availability may change without notice.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
