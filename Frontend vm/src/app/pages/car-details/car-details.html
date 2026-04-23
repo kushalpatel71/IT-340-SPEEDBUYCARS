@@ -1,0 +1,112 @@
+<div class="details-wrapper">
+  <div class="hero-image" [style.background-image]="'url(' + car.image + ')'">
+    <div class="hero-overlay">
+      <h1>{{ car.title }}</h1>
+      <p>{{ car.subtitle }}</p>
+    </div>
+  </div>
+
+  <div class="top-summary">
+    <h2>Vehicle Detail Sheet</h2>
+    <div class="price">{{ car.price }}</div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-box">
+      <h3>VEHICLE SPECS</h3>
+      <ul>
+        <li *ngFor="let spec of car.specs">{{ spec }}</li>
+      </ul>
+    </div>
+
+    <div class="info-box">
+      <h3>FEATURES</h3>
+      <ul>
+        <li *ngFor="let feature of car.features">{{ feature }}</li>
+      </ul>
+    </div>
+
+    <div class="info-box">
+      <h3>CONDITION</h3>
+      <p>{{ car.condition }}</p>
+    </div>
+
+    <div class="info-box">
+      <h3>PAYMENT</h3>
+      <ul>
+        <li *ngFor="let finance of financeItems">{{ finance }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="contact-section">
+    <div class="contact-card">
+      <h3>TERMS &amp; DETAILS</h3>
+      <ul>
+        <li *ngFor="let item of termItems">{{ item }}</li>
+      </ul>
+    </div>
+
+    <div class="contact-card">
+      <h3>DEALERSHIP CONTACT</h3>
+      <ul>
+        <li *ngFor="let item of contactItems">{{ item }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="action-buttons">
+    <a routerLink="/inventory" class="btn-dark">Back to Inventory</a>
+    <button class="btn-dark" type="button" (click)="openPayment()">Payment Options</button>
+    <button class="btn-red" type="button" (click)="openQuote()">Get Quote</button>
+  </div>
+
+  <div class="review-section">
+    <h3>Customer Reviews</h3>
+
+    <div class="review-summary">
+      <div class="average-rating">
+        {{ approvedReviews.length ? ('Average Rating: ' + averageRating.toFixed(1) + ' / 5') : 'Average Rating: No reviews yet' }}
+      </div>
+      <div class="rating-stars">{{ approvedReviews.length ? averageRatingStars : '☆☆☆☆☆' }}</div>
+    </div>
+
+    <div class="login-review-note" *ngIf="!currentUser?.loggedIn">
+      Please login first to submit a review.
+    </div>
+
+    <div class="review-form">
+      <label>Select Rating</label>
+      <div class="star-select">
+        <span
+          class="star-option"
+          *ngFor="let value of [1,2,3,4,5]"
+          [class.active]="value <= selectedRating"
+          (click)="selectRating(value)">★</span>
+      </div>
+
+      <div class="selected-rating-text">{{ selectedRatingText }}</div>
+
+      <label for="reviewComment">Write Your Comment</label>
+      <textarea id="reviewComment" [(ngModel)]="reviewComment" placeholder="Write your review here..."></textarea>
+
+      <button class="submit-review-btn" type="button" (click)="submitReview()">Submit Review</button>
+      <div class="review-message" [ngClass]="reviewMessageType">{{ reviewMessage }}</div>
+    </div>
+
+    <div class="reviews-list" *ngIf="approvedReviews.length; else noReviews">
+      <div class="review-card" *ngFor="let review of approvedReviews">
+        <div class="review-card-header">
+          <div class="review-user">{{ review.userName }}</div>
+          <div class="review-date">{{ review.date }}</div>
+        </div>
+        <div class="review-card-stars">{{ getStars(review.rating) }}</div>
+        <div class="review-text">{{ review.comment }}</div>
+      </div>
+    </div>
+
+    <ng-template #noReviews>
+      <div class="no-reviews">No reviews have been posted yet for this vehicle.</div>
+    </ng-template>
+  </div>
+</div>

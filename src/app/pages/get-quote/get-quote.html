@@ -1,0 +1,76 @@
+<section class="quote-page">
+  <div class="quote-container">
+    <div class="quote-card">
+      <h1 class="logo">Speed<span>BuyCars</span></h1>
+
+      <h2>GET A QUOTE</h2>
+      <p class="subtitle">
+        Fill out the form below and we will send a quote confirmation to your email.
+      </p>
+
+      <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+      <div class="success-message" *ngIf="successMessage">{{ successMessage }}</div>
+
+      <form #quoteForm="ngForm" (ngSubmit)="submitQuote()">
+        <label for="fullname">Full Name</label>
+        <input
+          id="fullname"
+          type="text"
+          name="fullname"
+          [(ngModel)]="formData.fullname"
+          placeholder="Enter your full name"
+          required
+        />
+
+        <label for="email">Email Address</label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          [(ngModel)]="formData.email"
+          placeholder="Enter your email address"
+          required
+        />
+
+        <label for="phone">Phone Number</label>
+        <input
+          id="phone"
+          type="text"
+          name="phone"
+          [(ngModel)]="formData.phone"
+          placeholder="Enter your phone number"
+          required
+        />
+
+        <label for="car">Selected Car</label>
+        <select
+          id="car"
+          name="car"
+          [(ngModel)]="formData.car"
+          required
+        >
+          <option value="">Choose a vehicle</option>
+          <option *ngFor="let car of cars" [value]="car.value">
+            {{ car.label }}
+          </option>
+        </select>
+
+        <label for="notes">Additional Notes</label>
+        <textarea
+          id="notes"
+          name="notes"
+          [(ngModel)]="formData.notes"
+          placeholder="Optional message"
+        ></textarea>
+
+        <button type="submit" [disabled]="isLoading || quoteForm.invalid">
+          {{ isLoading ? 'SENDING...' : 'SEND QUOTE REQUEST' }}
+        </button>
+      </form>
+
+      <p class="back-link">
+        <a routerLink="/">Return to Home</a>
+      </p>
+    </div>
+  </div>
+</section>
