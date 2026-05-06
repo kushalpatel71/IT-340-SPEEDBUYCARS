@@ -1,0 +1,21 @@
+SpeedBuyCars Security VM
+
+Purpose:
+- SSH administration
+- UFW testing
+- Monitoring/logging checks
+- Security validation
+
+Security Tests Completed:
+- SQL injection login testing
+- NoSQL injection login testing
+- Password hashing verified
+- JWT login protection verified
+- Email passcode verification tested
+- UFW rules reviewed
+
+Recommended UFW:
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow 22/tcp
+sudo ufw enable
