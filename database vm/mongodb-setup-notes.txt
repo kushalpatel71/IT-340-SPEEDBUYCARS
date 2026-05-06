@@ -1,0 +1,15 @@
+SpeedBuyCars Database VM
+
+Database: MongoDB
+Database Name: speedbuycars
+MongoDB Port: 27017
+
+Recommended UFW:
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow from BACKEND_VM_IP to any port 27017 proto tcp
+sudo ufw allow from SECURITY_VM_IP to any port 22 proto tcp
+sudo ufw enable
+
+MongoDB connection used by backend:
+mongodb://DATABASE_VM_IP:27017/speedbuycars
