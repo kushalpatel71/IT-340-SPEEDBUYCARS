@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
@@ -36,13 +36,41 @@ export class SellYourCarComponent {
   constructor(
     private router: Router,
     private http: HttpClient
-  ) {}
+  ) {
+    const userRaw = localStorage.getItem('speedbuycars_user');
+
+    if (userRaw) {
+      try {
+        const user = JSON.parse(userRaw);
+        this.formData.fullname = user.fullName || '';
+        this.formData.email = user.email || '';
+      } catch {
+        console.log('No saved user found.');
+      }
+    }
+  }
+
+  private getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem('speedbuycars_token');
+
+    return new HttpHeaders({
+      Authorization: token ? `Bearer ${token}` : ''
+    });
+  }
 
   submitVehicle(): void {
     if (this.isLoading) return;
 
     this.errorMessage = '';
     this.successMessage = '';
+
+    const token = localStorage.getItem('speedbuycars_token');
+
+    if (!token) {
+      this.errorMessage = 'Please login first.';
+      this.router.navigate(['/login']);
+      return;
+    }
 
     if (
       !this.formData.fullname.trim() ||
@@ -75,9 +103,11 @@ export class SellYourCarComponent {
 
     this.isLoading = true;
 
-    this.http.post<any>(`${this.API_BASE}/api/sellcar`, payload)
+    this.http.post<any>(`${this.API_BASE}/api/sellcar`, payload, {
+      headers: this.getAuthHeaders()
+    })
       .pipe(
-        timeout(10000),
+        timeout(15000),
         finalize(() => {
           this.isLoading = false;
         })
@@ -89,21 +119,29 @@ export class SellYourCarComponent {
           this.successMessage =
             response?.message || 'Vehicle submitted successfully. Redirecting...';
 
+          localStorage.setItem('sellSuccessData', JSON.stringify(payload));
+
           setTimeout(() => {
             this.router.navigate(['/sell-success'], {
               state: payload
             });
-          }, 800);
+          }, 500);
         },
         error: (error) => {
           console.error('sellcar error:', error);
 
           if (error.name === 'TimeoutError') {
-            this.errorMessage = 'Request timed out. Check if backend server is running.';
+            this.errorMessage = 'Request timed out. Backend or email sending is not responding.';
           } else if (error.status === 0) {
-            this.errorMessage = 'Cannot connect to backend. Check backend IP, port, and CORS.';
+            this.errorMessage = 'Cannot connect to backend. Check backend IP, port 5000, and CORS.';
+          } else if (error.status === 401 || error.status === 403) {
+            this.errorMessage = 'Login expired. Please login again.';
+            localStorage.removeItem('speedbuycars_token');
+            localStorage.removeItem('speedbuycars_user');
+            setTimeout(() => this.router.navigate(['/login']), 700);
           } else {
-            this.errorMessage = error.error?.message || 'Failed to submit vehicle.';
+            this.errorMessage =
+              error.error?.message || 'Failed to submit vehicle.';
           }
         }
       });

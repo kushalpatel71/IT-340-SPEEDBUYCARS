@@ -1,63 +1,87 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 export interface User {
+  id?: string;
   fullName: string;
   email: string;
-  password?: string;
-  loggedIn?: boolean;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private userKey = 'speedBuyCarsUser';
-  private currentUserKey = 'speedBuyCarsCurrentUser';
+  private apiUrl = 'http://192.168.165.138:5000/api/auth';
 
-  register(user: User): { success: boolean; message: string } {
-    if (!user.fullName || !user.email || !user.password) {
-      return { success: false, message: 'Please fill in all fields.' };
-    }
+  private tokenKey = 'speedbuycars_token';
+  private userKey = 'speedbuycars_user';
 
-    if (user.password.length < 6) {
-      return { success: false, message: 'Password must be at least 6 characters long.' };
-    }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
-    localStorage.setItem(this.userKey, JSON.stringify(user));
-    return { success: true, message: 'Registration successful.' };
+  private isBrowser(): boolean {
+    return isPlatformBrowser(this.platformId);
   }
 
-  login(email: string, password: string): { success: boolean; message: string } {
-    const savedUser = JSON.parse(localStorage.getItem(this.userKey) || 'null');
-
-    if (!savedUser) {
-      return { success: false, message: 'No registered user found. Please register first.' };
-    }
-
-    if (email.toLowerCase() === savedUser.email && password === savedUser.password) {
-      const currentUser = {
-        fullName: savedUser.fullName,
-        email: savedUser.email,
-        loggedIn: true
-      };
-
-      localStorage.setItem(this.currentUserKey, JSON.stringify(currentUser));
-      return { success: true, message: 'Login successful.' };
-    }
-
-    return { success: false, message: 'Invalid email or password.' };
+  register(user: { fullName: string; email: string; password: string }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, user);
   }
 
-  getCurrentUser() {
-    return JSON.parse(localStorage.getItem(this.currentUserKey) || 'null');
+  login(email: string, password: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/login`, { email, password });
+  }
+
+  sendPasscode(email: string, password: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/send-passcode`, { email, password });
+  }
+
+  verifyPasscode(email: string, passcode: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/verify-passcode`, { email, passcode });
+  }
+
+  saveLogin(data: any): void {
+    if (!this.isBrowser()) return;
+
+    localStorage.setItem(this.tokenKey, data.token);
+    localStorage.setItem(this.userKey, JSON.stringify(data.user));
+  }
+
+  getToken(): string | null {
+    if (!this.isBrowser()) return null;
+    return localStorage.getItem(this.tokenKey);
+  }
+
+  getCurrentUser(): User | null {
+    if (!this.isBrowser()) return null;
+
+    const savedUser = localStorage.getItem(this.userKey);
+    return savedUser ? JSON.parse(savedUser) : null;
+  }
+
+  getAuthHeaders(): HttpHeaders {
+    const token = this.getToken();
+
+    return new HttpHeaders({
+      Authorization: token ? `Bearer ${token}` : ''
+    });
   }
 
   isLoggedIn(): boolean {
-    const user = this.getCurrentUser();
-    return !!(user && user.loggedIn);
+    return !!this.getToken();
   }
 
   logout(): void {
-    localStorage.removeItem(this.currentUserKey);
+    if (this.isBrowser()) {
+      localStorage.removeItem(this.tokenKey);
+      localStorage.removeItem(this.userKey);
+    }
+
+    this.router.navigate(['/login']);
   }
 }

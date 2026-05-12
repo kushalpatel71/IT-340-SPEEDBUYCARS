@@ -26,22 +26,29 @@
     </form>
 
     <div class="auth-buttons">
-      <ng-container *ngIf="!currentUser?.loggedIn; else loggedInBlock">
+      <ng-container *ngIf="!isLoggedIn; else loggedInBlock">
         <a routerLink="/login" class="login-btn">LOGIN</a>
         <a routerLink="/register" class="register-btn">REGISTER</a>
       </ng-container>
 
       <ng-template #loggedInBlock>
         <div class="user-box">
-          <div class="user-name">👤 {{ currentUser?.fullName }}</div>
+          <div class="user-name">
+            👤 {{ currentUser?.fullName || currentUser?.email }}
+          </div>
 
           <button class="user-details-btn" type="button" (click)="toggleDropdown()">
-            👤 View More Details
+            View Details
           </button>
 
           <div class="user-dropdown" [class.show]="dropdownOpen">
-            <div class="user-detail-line">👤 {{ currentUser?.email }}</div>
-            <button class="logout-btn" type="button" (click)="logout()">Logout</button>
+            <div class="user-detail-line">
+              Email: {{ currentUser?.email }}
+            </div>
+
+            <button class="logout-btn" type="button" (click)="logout()">
+              LOGOUT
+            </button>
           </div>
         </div>
       </ng-template>

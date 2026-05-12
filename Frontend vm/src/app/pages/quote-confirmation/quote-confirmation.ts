@@ -15,13 +15,17 @@ export class QuoteConfirmationComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    const savedQuote = localStorage.getItem('speedbuycarsQuote');
+    const nav = this.router.getCurrentNavigation();
+    const stateData = nav?.extras?.state;
 
-    if (savedQuote) {
-      this.quoteData = JSON.parse(savedQuote);
-    } else {
-      this.quoteData = null;
+    if (stateData) {
+      this.quoteData = stateData;
+      localStorage.setItem('speedbuycarsQuote', JSON.stringify(stateData));
+      return;
     }
+
+    const savedQuote = localStorage.getItem('speedbuycarsQuote');
+    this.quoteData = savedQuote ? JSON.parse(savedQuote) : null;
   }
 
   returnHome(): void {

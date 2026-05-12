@@ -68,30 +68,53 @@
       <div class="average-rating">
         {{ approvedReviews.length ? ('Average Rating: ' + averageRating.toFixed(1) + ' / 5') : 'Average Rating: No reviews yet' }}
       </div>
-      <div class="rating-stars">{{ approvedReviews.length ? averageRatingStars : '☆☆☆☆☆' }}</div>
+
+      <div class="rating-stars">
+        {{ approvedReviews.length ? averageRatingStars : '☆☆☆☆☆' }}
+      </div>
     </div>
 
-    <div class="login-review-note" *ngIf="!currentUser?.loggedIn">
+    <div class="login-review-note" *ngIf="!isLoggedIn">
       Please login first to submit a review.
     </div>
 
     <div class="review-form">
       <label>Select Rating</label>
+
       <div class="star-select">
         <span
           class="star-option"
           *ngFor="let value of [1,2,3,4,5]"
           [class.active]="value <= selectedRating"
-          (click)="selectRating(value)">★</span>
+          (click)="selectRating(value)"
+        >
+          ★
+        </span>
       </div>
 
-      <div class="selected-rating-text">{{ selectedRatingText }}</div>
+      <div class="selected-rating-text">
+        {{ selectedRatingText }}
+      </div>
 
       <label for="reviewComment">Write Your Comment</label>
-      <textarea id="reviewComment" [(ngModel)]="reviewComment" placeholder="Write your review here..."></textarea>
 
-      <button class="submit-review-btn" type="button" (click)="submitReview()">Submit Review</button>
-      <div class="review-message" [ngClass]="reviewMessageType">{{ reviewMessage }}</div>
+      <textarea
+        id="reviewComment"
+        [(ngModel)]="reviewComment"
+        placeholder="Write your review here..."
+      ></textarea>
+
+      <button
+        class="submit-review-btn"
+        type="button"
+        (click)="submitReview()"
+      >
+        Submit Review
+      </button>
+
+      <div class="review-message" [ngClass]="reviewMessageType" *ngIf="reviewMessage">
+        {{ reviewMessage }}
+      </div>
     </div>
 
     <div class="reviews-list" *ngIf="approvedReviews.length; else noReviews">
@@ -100,13 +123,21 @@
           <div class="review-user">{{ review.userName }}</div>
           <div class="review-date">{{ review.date }}</div>
         </div>
-        <div class="review-card-stars">{{ getStars(review.rating) }}</div>
-        <div class="review-text">{{ review.comment }}</div>
+
+        <div class="review-card-stars">
+          {{ getStars(review.rating) }}
+        </div>
+
+        <div class="review-text">
+          {{ review.comment }}
+        </div>
       </div>
     </div>
 
     <ng-template #noReviews>
-      <div class="no-reviews">No reviews have been posted yet for this vehicle.</div>
+      <div class="no-reviews">
+        No reviews have been posted yet for this vehicle.
+      </div>
     </ng-template>
   </div>
 </div>

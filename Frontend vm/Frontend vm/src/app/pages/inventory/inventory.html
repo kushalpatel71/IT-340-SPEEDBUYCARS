@@ -1,0 +1,47 @@
+<h1 class="page-title">Available Cars For Sale</h1>
+<p class="subtitle">{{ pageSubtitle }}</p>
+
+<div class="results-bar">
+  <div class="results-text">{{ resultsText }}</div>
+  <button class="clear-search" type="button" *ngIf="searchValue" (click)="clearSearch()">Clear Search</button>
+</div>
+
+<div class="no-results" *ngIf="externalSearchVisible && !filteredCars.length">
+  <h2>Search More Cars Online</h2>
+  <p style="margin-top:10px;">{{ externalSearchText }}</p>
+  <button id="externalSearchBtn" type="button" (click)="openExternalSearch()">Search in Google</button>
+</div>
+
+<section class="inventory-list">
+  <div class="car-row" *ngFor="let car of filteredCars">
+    <img [src]="car.image" [alt]="car.title">
+    <div class="car-main">
+      <h3>{{ car.title }}</h3>
+      <p>Mileage: {{ car.mileage }}</p>
+      <p>Transmission: {{ car.transmission }}</p>
+      <p>Engine: {{ car.engine }}</p>
+      <p>Color: {{ car.color }}</p>
+    </div>
+    <div class="car-side">
+      <div class="price">{{ car.price }}</div>
+      <button class="details-btn" type="button" (click)="goToDetails(car.key)">View Details</button>
+
+      <div class="inventory-rating-box">
+        <div class="inventory-rating-stars">{{ getRatingSummary(car.key).stars }}</div>
+        <div class="inventory-rating-text">{{ getRatingSummary(car.key).text }}</div>
+        <div class="inventory-rating-count">{{ getRatingSummary(car.key).count }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="no-results" *ngIf="searchValue && !filteredCars.length">
+  <h2>No cars matched your search</h2>
+  <p style="margin-top:10px;">Try searching by year, make, model, engine, or color.</p>
+</div>
+
+<div class="no-results" *ngIf="externalSearchVisible && filteredCars.length">
+  <h2>Search More Cars Online</h2>
+  <p style="margin-top:10px;">{{ externalSearchText }}</p>
+  <button id="externalSearchBtn" type="button" (click)="openExternalSearch()">Search in Google</button>
+</div>

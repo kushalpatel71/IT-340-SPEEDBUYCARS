@@ -8,13 +8,17 @@
       </div>
 
       <div class="form-area">
-        <h1>LOGIN TO YOUR ACCOUNT</h1>
+        <h1>LOGIN REQUIRED</h1>
+        <p class="login-subtitle">
+          You must login and verify your email passcode before using SpeedBuyCars.
+        </p>
 
         <div class="notice-message" *ngIf="noticeMessage">{{ noticeMessage }}</div>
         <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
         <div class="success-message" *ngIf="successMessage">{{ successMessage }}</div>
 
-        <form *ngIf="!showPasscodeBox" (ngSubmit)="sendPasscode()">
+        <!-- STEP 1: SEND PASSCODE -->
+        <form (ngSubmit)="sendPasscode()">
           <div class="input-group">
             <input
               type="email"
@@ -22,6 +26,7 @@
               [(ngModel)]="email"
               placeholder="Email"
               required
+              [readonly]="showPasscodeBox"
             />
           </div>
 
@@ -32,18 +37,39 @@
               [(ngModel)]="password"
               placeholder="Password"
               required
+              [readonly]="showPasscodeBox"
             />
-            <button type="button" class="toggle-password" (click)="togglePassword()">
+
+            <button
+              type="button"
+              class="toggle-password"
+              (click)="togglePassword()"
+            >
               {{ showPassword ? 'Hide' : 'Show' }}
             </button>
           </div>
 
-          <button type="submit" class="login-btn" [disabled]="isLoading">
-            {{ isLoading ? 'SENDING...' : 'SEND PASSCODE' }}
+          <button
+            type="submit"
+            class="login-btn"
+            [disabled]="isSending || showPasscodeBox"
+          >
+            {{ isSending ? 'SENDING...' : showPasscodeBox ? 'PASSCODE SENT' : 'SEND PASSCODE' }}
           </button>
         </form>
 
-        <form *ngIf="showPasscodeBox" (ngSubmit)="verifyPasscode()" class="passcode-box">
+        <!-- STEP 2: VERIFY PASSCODE -->
+        <form (ngSubmit)="verifyPasscode()" class="passcode-box always-visible">
+          <h2>Email Verification</h2>
+
+          <p class="passcode-text" *ngIf="!showPasscodeBox">
+            First enter your email and password, then click Send Passcode.
+          </p>
+
+          <p class="passcode-text" *ngIf="showPasscodeBox">
+            Enter the 6-digit passcode sent to your email.
+          </p>
+
           <div class="input-group">
             <input
               type="text"
@@ -52,11 +78,16 @@
               placeholder="Enter passcode from your email"
               maxlength="6"
               required
+              [disabled]="!showPasscodeBox"
             />
           </div>
 
-          <button type="submit" class="verify-btn" [disabled]="isLoading">
-            {{ isLoading ? 'VERIFYING...' : 'VERIFY PASSCODE' }}
+          <button
+            type="submit"
+            class="verify-btn"
+            [disabled]="isVerifying || !showPasscodeBox"
+          >
+            {{ isVerifying ? 'VERIFYING...' : 'VERIFY PASSCODE' }}
           </button>
         </form>
 

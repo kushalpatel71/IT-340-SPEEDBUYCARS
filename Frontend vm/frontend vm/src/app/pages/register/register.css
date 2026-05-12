@@ -1,0 +1,188 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.register-page {
+  min-height: 100vh;
+  background: url("/assets/mercedes2.jpeg") no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 40px 20px;
+}
+
+.register-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.register-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.register-box {
+  width: 100%;
+  max-width: 520px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 0, 0, 0.35);
+  border-radius: 20px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.55);
+}
+
+.top-bar {
+  padding: 28px 30px;
+  border-bottom: 2px solid #d40000;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.logo {
+  font-size: 3rem;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.logo .white {
+  color: white;
+}
+
+.logo .red {
+  color: #ff1e1e;
+}
+
+.form-area {
+  padding: 45px 35px 35px;
+  text-align: center;
+}
+
+.form-area h1 {
+  color: white;
+  font-size: 2.1rem;
+  font-weight: 300;
+  margin-bottom: 30px;
+  line-height: 1.2;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 18px 20px;
+  border-radius: 10px;
+  border: 1px solid #2a2a2a;
+  background: rgba(0, 0, 0, 0.55);
+  color: white;
+  font-size: 1.08rem;
+  outline: none;
+}
+
+.input-group input::placeholder {
+  color: #bdbdbd;
+}
+
+.signup-btn {
+  width: 100%;
+  padding: 18px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 8px;
+  background: linear-gradient(to bottom, #ff2a2a, #c40000);
+  color: white;
+}
+
+.signup-btn:hover {
+  background: linear-gradient(to bottom, #ff3b3b, #d10000);
+}
+
+.bottom-text {
+  color: white;
+  margin-top: 22px;
+  font-size: 1rem;
+}
+
+.bottom-text a {
+  color: #d9d9d9;
+  margin-left: 6px;
+  text-decoration: underline;
+}
+
+.bottom-text a:hover {
+  color: #ffffff;
+}
+
+.error-message,
+.success-message {
+  margin-bottom: 16px;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+.error-message {
+  background: rgba(255, 0, 0, 0.15);
+  color: #ff7b7b;
+  border: 1px solid rgba(255, 0, 0, 0.25);
+}
+
+.success-message {
+  background: rgba(0, 255, 128, 0.15);
+  color: #7dffb0;
+  border: 1px solid rgba(0, 255, 128, 0.25);
+}
+
+@media (max-width: 600px) {
+  .register-page {
+    padding: 20px 14px;
+  }
+
+  .register-box {
+    max-width: 100%;
+  }
+
+  .top-bar {
+    padding: 22px 20px;
+  }
+
+  .logo {
+    font-size: 2.2rem;
+  }
+
+  .form-area {
+    padding: 30px 22px 26px;
+  }
+
+  .form-area h1 {
+    font-size: 1.7rem;
+  }
+
+  .input-group input,
+  .signup-btn {
+    padding: 16px;
+    font-size: 1rem;
+  }
+}

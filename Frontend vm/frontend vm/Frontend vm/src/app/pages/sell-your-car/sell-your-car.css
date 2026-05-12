@@ -1,0 +1,267 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+html,
+body {
+  min-height: 100%;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.75), rgba(243, 238, 238, 0.75)),
+    url('/assets/mercedes2.jpeg') no-repeat center center / cover;
+  color: white;
+  padding-top: 90px;
+  position: relative;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  background: rgba(15,15,15,.96);
+  border-bottom: 2px solid #a40e0e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.logo .white {
+  color: white;
+}
+
+.logo .red {
+  color: #e11d1d;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: white;
+  margin: 0 12px;
+}
+
+.nav-links a:hover {
+  color: #ff2a2a;
+}
+
+.form-box {
+  width: 90%;
+  max-width: 700px;
+  margin: 40px auto;
+  background: rgba(20,20,20,0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid #2a2a2a;
+  border-radius: 14px;
+  padding: 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.sub {
+  text-align: center;
+  color: #ccc;
+  margin-bottom: 25px;
+}
+
+.input-group {
+  margin-bottom: 16px;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  outline: none;
+}
+
+.input-group textarea {
+  height: 120px;
+  resize: none;
+}
+
+.btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 6px;
+  background: #c40000;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #ff1a1a;
+}
+
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.login-btn,
+.register-btn {
+  background: #c40000;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: 0.3s;
+  color: white;
+}
+
+.login-btn:hover,
+.register-btn:hover {
+  background: #ff1a1a;
+}
+
+.user-box {
+  position: relative;
+  display: none;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-name {
+  background: #30710d;
+  color: white;
+  border: 1px solid #9c0606;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.user-details-btn {
+  background: #c40000;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+
+.user-details-btn:hover {
+  background: #ff1a1a;
+}
+
+.user-dropdown {
+  display: none;
+  position: absolute;
+  top: 52px;
+  right: 0;
+  min-width: 270px;
+  background: #000000;
+  border: 1px solid #0f862d;
+  border-radius: 10px;
+  padding: 14px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.35);
+  z-index: 99999;
+}
+
+.user-dropdown.show {
+  display: block;
+}
+
+.user-detail-line {
+  color: white;
+  margin-bottom: 12px;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.logout-btn {
+  width: 100%;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: #2a2a2a;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: #444;
+}
+
+
+.error-message,
+.success-message {
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.error-message {
+  background: rgba(180, 0, 0, 0.18);
+  border: 1px solid #ff4d4d;
+  color: #ffd5d5;
+}
+
+.success-message {
+  background: rgba(0, 120, 40, 0.18);
+  border: 1px solid #38d16a;
+  color: #d9ffe6;
+}
+@media (max-width: 850px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    width: 100%;
+  }
+
+  .form-box {
+    width: 92%;
+    padding: 22px;
+  }
+}

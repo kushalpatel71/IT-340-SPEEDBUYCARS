@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './guards/auth.guard';
+
 import { PaymentOptionsComponent } from './pages/payment-options/payment-options';
 import { PaymentConfirmationComponent } from './pages/payment-confirmation/payment-confirmation';
 import { HomeComponent } from './pages/home/home';
@@ -14,18 +16,23 @@ import { SellYourCarComponent } from './pages/sell-your-car/sell-your-car';
 import { SellSuccessComponent } from './pages/sell-success/sell-success';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'inventory', component: InventoryComponent },
-  { path: 'car-details', component: CarDetailsComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: 'get-quote', component: GetQuoteComponent },
-  { path: 'quote-confirmation', component: QuoteConfirmationComponent },
+  // Public pages
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'sell-your-car', component: SellYourCarComponent },
-  { path: 'sell-success', component: SellSuccessComponent },
-  { path: 'payment-options', component: PaymentOptionsComponent },
-  { path: 'payment-confirmation', component: PaymentConfirmationComponent },
-  { path: '**', redirectTo: '' }
+
+  // Protected pages
+  { path: '', component: HomeComponent, canActivate: [authGuard] },
+  { path: 'inventory', component: InventoryComponent, canActivate: [authGuard] },
+  { path: 'car-details', component: CarDetailsComponent, canActivate: [authGuard] },
+  { path: 'about', component: AboutComponent, canActivate: [authGuard] },
+  { path: 'contact', component: ContactComponent, canActivate: [authGuard] },
+  { path: 'get-quote', component: GetQuoteComponent, canActivate: [authGuard] },
+  { path: 'quote-confirmation', component: QuoteConfirmationComponent, canActivate: [authGuard] },
+  { path: 'sell-your-car', component: SellYourCarComponent, canActivate: [authGuard] },
+  { path: 'sell-success', component: SellSuccessComponent, canActivate: [authGuard] },
+  { path: 'payment-options', component: PaymentOptionsComponent, canActivate: [authGuard] },
+  { path: 'payment-confirmation', component: PaymentConfirmationComponent, canActivate: [authGuard] },
+
+  // Anything else goes to login
+  { path: '**', redirectTo: 'login' }
 ];
